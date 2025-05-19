@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - BAU Feed Service (BAU-FS)</title>
+  
+  <!-- Google Fonts, Bootstrap, and Font Awesome for icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary-color: #0077b6;
+      --secondary-color: #00b4d8;
+      --accent-color: #90e0ef;
+      --bg-color: #f0f8ff;
+      --text-color: #222;
+      --card-bg: #e0e8f0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      padding: 10px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-nav .nav-link {
+      color: white !important;
+      font-weight: 500;
+      margin: 0 15px;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--accent-color) !important;
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    /* Header styling */
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: #d1e8f5;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .header-content img {
+      height: 80px;
+      border-radius: 10px;
+    }
+
+    .header-content h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0;
+      color: var(--primary-color);
+    }
+
+    /* Dashboard sections styling */
+    .dashboard-section {
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .dashboard-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .dashboard-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .dashboard-card img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .dashboard-card h3 {
+      color: #6a1b9a;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      color: #2196f3;
+      margin: 10px 0;
+    }
+
+    .btn-custom {
+      background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+      color: white;
+      font-weight: 600;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-custom:hover {
+      background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-custom i {
+      margin-right: 5px;
+    }
+
+    /* Footer styling */
+    footer {
+      background: rgba(202, 240, 248, 0.9);
+      padding: 15px;
+      text-align: center;
+      font-size: 0.95rem;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .header-content h1 {
+        font-size: 1.5rem;
+      }
+      .header-content img {
+        height: 60px;
+      }
+      .header-content {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .dashboard-card h3 {
+        font-size: 1.3rem;
+      }
+      .dashboard-card img {
+        max-width: 120px;
+      }
+      .btn-custom {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+      .dashboard-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .header-content h1 {
+        font-size: 1.2rem;
+      }
+      .header-content img {
+        height: 50px;
+      }
+      .dashboard-card {
+        padding: 15px;
+      }
+      .dashboard-card img {
+        max-width: 100px;
+      }
+      .arrow {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="poultry-feed.html">Poultry Feed</a></li>
+          <li class="nav-item"><a class="nav-link" href="livestock-feed.html">Livestock Feed</a></li>
+          <li class="nav-item"><a class="nav-link" href="fish-feed.html">Fish Feed</a></li>
+          <li class="nav-item"><a class="nav-link" href="logout.html">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header Section -->
+  <header>
+    <div class="header-content">
+      <img src="https://www.bau.edu.bd/public/frontend/images/logo_new.png" alt="BAU Logo" />
+      <h1>BAU Feed Service (BAU-FS)</h1>
+    </div>
+  </header>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard-section">
+    <div class="container">
+      <div class="dashboard-container">
+        <div class="dashboard-card">
+
+          <img src="https://cdn-icons-png.flaticon.com/512/6918/6918541.png" 
+          alt="Poultry Feed" />
+          <h3>Poultry Feed</h3>
+          <a href="poultry-feed.html" class="btn-custom"><i class="fas fa-arrow-right"></i> Explore</a>
+        </div>
+        <div class="arrow">↓</div>
+        <div class="dashboard-card">
+
+          <img src="https://png.pngtree.com/png-clipart/20240103/original/pngtree-cartoon-cow-feed-png-image_14006784.png" 
+          alt="Livestock Feed" />
+          <h3>Livestock Feed</h3>
+          <a href="livestock-feed.html" class="btn-custom"><i class="fas fa-arrow-right"></i> Explore</a>
+        </div>
+        <div class="arrow">↓</div>
+        <div class="dashboard-card">
+
+          <img src="https://cdn-icons-png.flaticon.com/512/9043/9043213.png" 
+          alt="Fish Feed" />
+          <h3>Fish Feed</h3>
+          <a href="fish-feed.html" class="btn-custom"><i class="fas fa-arrow-right"></i> Explore</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Copyright: BAU, Mymensingh | <a href="https://www.bau.edu.bd/" target="_blank">Visit BAU Website</a></p>
+    <p>© 2025 BAU Feed Service. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

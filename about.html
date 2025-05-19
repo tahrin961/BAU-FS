@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About BAU Feed Service (BAU-FS)</title>
+  
+  <!-- Google Fonts & Bootstrap -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!--animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary-color: #0077b6;
+      --secondary-color: #00b4d8;
+      --accent-color: #90e0ef;
+      --bg-color: #f0f8ff;
+      --text-color: #222;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(to right, rgba(34, 105, 159, 0.85), rgba(112, 215, 238, 0.85)), 
+        url('https://images.unsplash.com/photo-1500595046743-ddf4d3d753fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 40px 15px;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      position: relative;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap; 
+      gap: 15px; /* Space between logo and text */
+    }
+
+    .bau-logo {
+      height: 60px;
+      border-radius: 8px;
+    }
+
+    .header-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0; 
+    }
+
+    .header-subtitle {
+      font-size: 1rem;
+      color: #d9ecff;
+      width: 100%; 
+    }
+
+    .section {
+      background: white;
+      border-radius: 10px;
+      margin: 20px auto;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .feature-item {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+
+    .feature-item::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+    }
+
+    .free-tag {
+      display: inline-block;
+      background-color: #ffe0b2;
+      color: #e65100;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .btn-custom {
+      background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+      color: white;
+      padding: 8px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      transition: 0.3s ease-in-out;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .btn-custom:hover {
+      background: linear-gradient(to right, var(--primary-color), #9fd2ff);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      background: rgba(202, 240, 248, 0.9);
+      padding: 10px;
+      text-align: center;
+      font-size: 0.85rem;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .credits p {
+      margin: 3px 0;
+    }
+
+    
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column; 
+        gap: 10px;
+      }
+      .header-title {
+        font-size: 1.5rem;
+      }
+      .header-subtitle {
+        font-size: 0.9rem;
+      }
+      .bau-logo {
+        height: 45px;
+      }
+      .section {
+        margin: 15px;
+        padding: 15px;
+      }
+      .feature-item {
+        font-size: 0.85rem;
+      }
+      .btn-custom {
+        padding: 6px 15px;
+        font-size: 0.85rem;
+      }
+      footer {
+        font-size: 0.8rem;
+      }
+      .row {
+        flex-direction: column;
+      }
+      .col-md-6 {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .header-title {
+        font-size: 1.3rem;
+      }
+      .header-subtitle {
+        font-size: 0.8rem;
+      }
+      .bau-logo {
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header data-aos="fade-down">
+    <div class="header-content">
+      <a href="https://www.bau.edu.bd/" target="_blank">
+        <img class="bau-logo" src="https://www.bau.edu.bd/public/frontend/images/logo_new.png" alt="BAU Logo"/></a>
+      <h1 class="header-title">BAU Feed Service (BAU-FS)</h1>
+    </div>
+    <p class="header-subtitle">বাউ ফিড সার্ভিস (বাউ-এফএস)</p>
+  </header>
+
+  <main class="container-fluid">
+    <section class="section" data-aos="fade-up">
+      <h2 class="text-center mb-3">One-Stop Feed Solution for Small-Scale Farmers</h2>
+      <p class="text-center mb-4 text-muted">(এক ছাতার নিচে ছোট খামারীদের ফিড-সংক্রান্ত সকল সমস্যার সমাধান)</p>
+      
+      <div class="row">
+        <div class="col-md-6 mb-4" data-aos="fade-right">
+          <h3>Feed Formulation</h3>
+          <ul class="feature-list">
+            <li class="feature-item">Animal and ingredient selection from photos (ছবি দেখে উপাদান ও প্রাণীর নির্বাচন)</li>
+            <li class="feature-item">Accurate ingredient composition (উপাদানের সঠিক কম্পোজিশন)</li>
+            <li class="feature-item">Least cost feed formulation (সর্বনিম্ন দামে ফিড ফর্মুলেশন)</li>
+            <li class="feature-item">No need of chemical analysis (কোনো রাসায়নিক বিশ্লেষণের প্রয়োজন নেই)</li>
+          </ul>
+        </div>
+        <div class="col-md-6 mb-4" data-aos="fade-left">
+          <h3>Feed Library</h3>
+          <ul class="feature-list">
+            <li class="feature-item">Photo-based feed library (ছবি ভিত্তিক ফিড লাইব্রেরি)</li>
+            <li class="feature-item">Local feed resources (স্থানীয় উপাদানের সমৃদ্ধ লাইব্রেরি)</li>
+            <li class="feature-item">Dynamic ingredient composition (সার্বক্ষণিক হালনাগাদকৃত কম্পোজিশন)</li>
+          </ul>
+          <div class="free-tag mt-3"> 100% Free! ( ১০০% বিনামূল্যে! ) </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section text-center" data-aos="zoom-in">
+      <a href="login.html" class="btn-custom">Log-in here (লগইন করুন)</a>
+    </section>
+  </main>
+
+  <footer data-aos="fade-up">
+    <div class="credits mb-2">
+      <p><strong>Credits:</strong></p>
+      <p>Professor Dr. Md. Shahidur Rahman, Poultry Science (প্রফেসর ডঃ মোঃ শহিদুর রহমান, পোল্ট্রি বিজ্ঞান বিভাগ)</p>
+      <p>Professor Dr. Md. Rakib Hasan, Computer Science and Mathematics (প্রফেসর ডঃ মোহাম্মদ রাকিব হাসান, কম্পিউটার বিজ্ঞান ও ম্যাথমেটিক্স বিভাগ)</p>
+      <p>Bangladesh Agricultural University, Mymensingh </p>
+      <p>📞 01700636155 | ✉️ msrahman.poultry@bau.edu.bd</p>
+    </div>
+    <p class="mt-2">© 2025 BAU Feed Service. All rights reserved.</p>
+  </footer>
+
+  <!-- JS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
