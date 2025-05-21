@@ -90,7 +90,7 @@
     .login-container h2 {
       color: var(--primary-color);
       font-weight: 700;
-      margin: 0; /* Remove default margin for better alignment */
+      margin: 0; 
     }
 
     .form-control {
@@ -223,12 +223,12 @@
       const password = document.getElementById('password').value;
       const errorMessage = document.getElementById('errorMessage');
 
-      // Simple client-side validation (for demo purposes)
+      
       if (email === "msrahman.poultry@bau.edu.bd" && password === "password123") {
         errorMessage.style.display = 'none';
         alert('Login successful! Redirecting...');
-        // Replace with actual redirect logic if backend exists
-        window.location.href = 'dashboard.html'; // Example redirect
+        
+        window.location.href = 'dashboard.html'; 
       } else {
         errorMessage.style.display = 'block';
       }
