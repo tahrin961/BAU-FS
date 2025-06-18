@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BAU Feed Service (BAU-FS)</title>
+  <title>Feed Content- BAU Feed Service (BAU-FS)</title>
   
   <!-- Google Fonts, Bootstrap, and Font Awesome for icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -66,6 +66,18 @@
       background: url('https://images.unsplash.com/photo-1500595046743-ddf4d3d753fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center center/cover no-repeat;
       color: white;
       position: relative;
+    }
+
+
+    .feed-logo {
+      max-height: 150px;
+      width: auto;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      transition: transform 0.3s ease;
+    }
+
+    .feed-logo:hover {
+      transform: scale(1.1);
     }
 
     header::before {
@@ -242,7 +254,9 @@
   <!-- Header Section -->
   <header>
     <div class="header-content">
-      <img src="https://www.bau.edu.bd/public/frontend/images/logo_new.png" alt="BAU Logo" />
+      <a href="index.html" target="_blank" aria-label="Home">
+        <img class="feed-logo" src="https://i.postimg.cc/NM0Czg9X/BAU-FEED-LOGO-2109027.png" alt="BAU-FS logo" >
+      </a>
       <h1>BAU Feed Service (BAU-FS)</h1>
     </div>
   </header>
@@ -284,7 +298,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>Copyright: BAU, Mymensingh | <a href="https://www.bau.edu.bd/" target="_blank">Visit BAU Website</a></p>
+    <p>Copyright: BAU, Mymensingh | <a href="https://www.bau.edu.bd/" target="_blank" rel="noopener">Visit BAU Website</a></p>
     <p>© 2025 BAU Feed Service. All rights reserved.</p>
   </footer>
 

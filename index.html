@@ -11,7 +11,7 @@
       --primary-color: #0077b6;
       --secondary-color: #00b4d8;
       --accent-color: #90e0ef;
-      --bg-color: #f0f8ff;
+      --bg-color: #ffffff;
       --text-color: #222;
     }
 
@@ -65,19 +65,28 @@
     }
 
     .feed-logo {
-      max-height: 200px;
-      ;
+      max-height: 150px;
+      width: auto;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      transition: transform 0.3s ease;
+    }
+
+    .feed-logo:hover {
+      transform: scale(1.1);
     }
 
     .title {
-      font-size: 2.5rem;
+      font-size: 1clamp(1.8rem, 5vw, 3.5rem);
       font-weight: 700;
+      margin: 0;
+      line-height: 1.2;
     }
 
     .subtitle {
-      font-size: 1.2rem;
+      font-size:clamp(1rem, 3vw, 1.3rem);
       font-weight: 500;
       color: #e3f2fd;
+      margin: 0.5rem 0;
     }
 
     .illustration img {
@@ -102,12 +111,17 @@
       transition: 0.3s ease-in-out;
       font-size: 1rem;
       border: none;
+      touch-action: manipulation;
     }
 
     .btn-custom:hover {
       background: linear-gradient(to right, var(--primary-color), #9fd2fff3);
       transform: scale(1.05);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+     main {
+      padding: 4rem 1rem;
     }
 
     .section-title {
@@ -180,12 +194,12 @@
 <body>
   <header>
     <div class="register-btn">
-      <a href="#" class="btn">Register</a>
+      <a class="btn" href="register.html">Register</a>
     </div>
     <div class="header-content">
-      
-        <img class="feed-logo" src="https://i.postimg.cc/NM0Czg9X/BAU-FEED-LOGO-2109027.png" alt="BAU-FS logo">
-      
+      <a href="index.html" target="_blank" aria-label="Home">
+        <img class="feed-logo" src="https://i.postimg.cc/NM0Czg9X/BAU-FEED-LOGO-2109027.png" alt="BAU-FS logo" >
+      </a>
       <div>
         <h1 class="title">BAU Feed Service (BAU-FS)</h1>
         <p class="subtitle">বাউ ফিড সার্ভিস (বাউ-এফএস)</p>
@@ -196,7 +210,9 @@
   <main class="container my-5">
     <div class="row justify-content-center">
       <div class="col-md-8 col-lg-6 illustration mb-4 text-center">
-        <img src="https://i.postimg.cc/cCfn0nP8/BAU-FS-line-art-transparent.png" class="img-fluid" alt="BAU Feed Illustration">
+        
+          <img src="https://i.postimg.cc/cCfn0nP8/BAU-FS-line-art-transparent.png" class="img-fluid" alt="BAU Feed Illustration">
+        
       </div>
     </div>
 
