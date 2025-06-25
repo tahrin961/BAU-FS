@@ -3,22 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BAU Feed Service - Advanced livestock feed management system">
   <title>Login - BAU Feed Service (BAU-FS)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+  <link rel="preload" href="https://img.freepik.com/free-photo/agriculture-iot-with-rice-field-background_53876-124635.jpg" as="image">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     :root {
       --primary-color: #118fd3;
+      --primary-hover: #0d7cb9;
       --secondary-color: #14c6ea;
       --accent-color: #76eaff;
       --bg-color: #cfe5f7;
       --text-color: #1a1313;
+      --text-light: #f8f9fa;
+      --error-color: #ff4d4f;
+      --success-color: #52c41a;
+      --transition-base: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+      --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+      --border-radius-sm: 8px;
+      --border-radius-md: 12px;
+      --border-radius-lg: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(rgba(4, 4, 4, 0.5), rgba(8, 7, 7, 0.5)), 
-      url('https://img.freepik.com/free-photo/agriculture-iot-with-rice-field-background_53876-124635.jpg')
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(rgba(167, 222, 230, 0.7), rgba(8, 7, 7, 0.7)), 
+      url('WhatsApp Image 2025-06-21 at 23.48.44_d9a0feaf.jpg')
        no-repeat center center fixed;
       background-size: cover;
       color: var(--text-color);
@@ -28,6 +63,9 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Animations */
@@ -43,30 +81,79 @@
 
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+      50% { transform: scale(1.03); }
       100% { transform: scale(1); }
     }
 
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
     .fade-in {
-      animation: fadeIn 1.2s ease-out;
+      animation: fadeIn 0.8s ease-out forwards;
     }
 
     .slide-in {
-      animation: slideIn 1.5s ease-out;
+      animation: slideIn 1s ease-out forwards;
     }
 
     .pulse {
       animation: pulse 2s infinite ease-in-out;
     }
 
+    /* Layout */
+    .container {
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    @media (min-width: 576px) {
+      .container {
+        max-width: 540px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        max-width: 720px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .container {
+        max-width: 960px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 1140px;
+      }
+    }
+
+    /* Login Container */
     .login-container {
-      background: rgb(255, 255, 255);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2.5rem;
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-xl);
       max-width: 500px;
-      margin: auto;
+      margin: 2rem auto;
       text-align: center;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      transition: var(--transition-base);
+      will-change: transform;
+    }
+
+    .login-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
 
     .header-content {
@@ -74,13 +161,26 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 20px;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .logo-container img {
       height: 60px;
+      width: auto;
       transition: transform 0.3s ease;
+      object-fit: contain;
+      background: transparent;
+      mix-blend-mode: multiply;
+      filter: contrast(1.1);
     }
 
     .logo-container img:hover {
@@ -90,87 +190,300 @@
     .login-container h2 {
       color: var(--primary-color);
       font-weight: 700;
-      margin: 0; 
+      margin: 0;
+      font-size: 1.75rem;
+      letter-spacing: -0.5px;
+    }
+
+    .login-container p.subtitle {
+      color: #666;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 1.25rem;
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #555;
     }
 
     .form-control {
-      border-radius: 10px;
-      border: 1px solid var(--primary-color);
-      padding: 10px;
-      transition: all 0.3s ease;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text-color);
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition-base);
     }
 
     .form-control:focus {
-      border-color: var(--secondary-color);
-      box-shadow: 0 0 5px rgba(0, 180, 216, 0.5);
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(17, 143, 211, 0.25);
+      outline: 0;
+    }
+
+    .input-group {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .input-group-text {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      text-align: center;
+      white-space: nowrap;
+      background-color: #e9ecef;
+      border: 1px solid #ced4da;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -webkit-user-select: none;
+      user-select: none;
+      border: 1px solid transparent;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition-base);
+      cursor: pointer;
     }
 
     .btn-login {
       background: var(--primary-color);
       color: white;
-      font-weight: 600;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      transition: all 0.3s ease;
       width: 100%;
+      position: relative;
+      overflow: hidden;
     }
 
     .btn-login:hover {
-      background: var(--secondary-color);
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
     }
 
+    .btn-login:active {
+      transform: translateY(0);
+    }
+
+    .btn-login::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(30deg);
+      transition: var(--transition-base);
+    }
+
+    .btn-login:hover::after {
+      left: 100%;
+    }
+
+    /* Utility Classes */
+    .text-center {
+      text-align: center;
+    }
+
+    .mt-3 {
+      margin-top: 1rem;
+    }
+
+    .mb-3 {
+      margin-bottom: 1rem;
+    }
+
+    /* Error Handling */
     .error-message {
-      color: #dc3545;
-      font-size: 0.9rem;
-      margin-top: 10px;
+      color: var(--error-color);
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
       display: none;
+      text-align: left;
     }
 
-    .link-back {
+    .has-error .form-control {
+      border-color: var(--error-color);
+    }
+
+    .has-error .error-message {
+      display: block;
+    }
+
+    /* Links */
+    .link {
       color: var(--primary-color);
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
+      transition: var(--transition-base);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
     }
 
-    .link-back:hover {
+    .link:hover {
       color: var(--secondary-color);
       text-decoration: underline;
     }
 
+    .link i {
+      font-size: 0.8em;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
-      padding: 20px;
-      background: rgba(199, 233, 254, 0.8);
-      color: #050404;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
+      padding: 1.5rem;
+      background: rgba(199, 233, 254, 0.9);
+      color: var(--text-color);
+      border-top-left-radius: var(--border-radius-lg);
+      border-top-right-radius: var(--border-radius-lg);
       box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .credits {
-      font-size: 0.9rem;
-      color: #000000;
+      font-size: 0.875rem;
+      color: inherit;
     }
 
+    .credits p {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-link {
+      color: var(--text-color);
+      font-size: 1.25rem;
+      transition: var(--transition-base);
+    }
+
+    .social-link:hover {
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    /* Loading Spinner */
+    .spinner {
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+      vertical-align: middle;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 0.5rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive Adjustments */
     @media (max-width: 768px) {
       .login-container {
-        padding: 20px;
-        margin: 20px;
+        padding: 1.5rem;
+        margin: 1rem;
+        border-radius: var(--border-radius-md);
       }
+      
       .header-content {
-        flex-direction: column; /* Stack logo and title on mobile */
-        gap: 10px;
+        flex-direction: column;
+        gap: 0.75rem;
       }
+      
       .logo-container img {
-        height: 40px;
+        height: 50px;
       }
+      
       .login-container h2 {
         font-size: 1.5rem;
       }
+      
+      footer {
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 1.25rem;
+      }
+      
+      .logo-container {
+        gap: 0.5rem;
+      }
+      
+      .logo-container img {
+        height: 40px;
+      }
+      
+      .login-container h2 {
+        font-size: 1.35rem;
+      }
+      
+      .form-control {
+        padding: 0.65rem 0.9rem;
+      }
+      
+      .btn-login {
+        padding: 0.65rem 1.25rem;
+      }
+    }
+
+    /* Accessibility Focus Styles */
+    a:focus, button:focus, input:focus, select:focus, textarea:focus {
+      outline: 3px solid rgba(17, 143, 211, 0.5);
+      outline-offset: 2px;
     }
   </style>
 </head>
@@ -179,28 +492,56 @@
     <div class="login-container fade-in">
       <div class="header-content">
         <div class="logo-container slide-in">
-          <a href="https://www.bau.edu.bd/" target="_blank" rel="noopener">
-          <img class="bau-logo" src="https://www.bau.edu.bd/public/frontend/images/logo_new.png" alt="BAU Logo"/></a>
-          <a href="https://lddp.portal.gov.bd/" target="_blank" rel="noopener">
-          <img src="https://sokalersomoy.online/storage/2024/June/1QwC8HGCDtPFT6uogbZlvsfObM0tWtFYnYlaUSQ9.jpg" alt="LDDP Logo" /></a>
-          <a href="https://www.dls.gov.bd/" target="_blank" rel="noopener">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTGoFzVgBwzMd57MnrnKSCcf7nH3NMxy4VYg&s" alt="DLS Logo" /></a>
+          <a href="https://www.bau.edu.bd/" target="_blank" rel="noopener noreferrer" aria-label="BAU Website">
+            <img class="bau-logo" src="https://www.bau.edu.bd/public/frontend/images/logo_new.png" alt="BAU Logo" loading="lazy"/>
+          </a>
+          <a href="https://lddp.portal.gov.bd/" target="_blank" rel="noopener noreferrer" aria-label="LDDP Website">
+            <img src="https://i.postimg.cc/MHmSz3TJ/Logo.png" alt="LDDP Logo" loading="lazy"/>
+          </a>
+          <a href="https://www.dls.gov.bd/" target="_blank" rel="noopener noreferrer" aria-label="DLS Website">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMvUQKyqXGtHgtmBPkSVRd2KTQ2VPLNuXgVA&s" alt="DLS Logo" loading="lazy"/>
+          </a>
         </div>
         <h2>BAU Feed Service (BAU-FS)</h2>
       </div>
-      <form id="loginForm" onsubmit="handleLogin(event)">
-        <div class="mb-3">
-          <input type="email" class="form-control" id="email" placeholder="Email address" required>
+      
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="email" class="form-label">Email address</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email" required autocomplete="username">
+          </div>
+          <div class="error-message" id="emailError">Please enter a valid email address</div>
         </div>
-        <div class="mb-3">
-          <input type="password" class="form-control" id="password" placeholder="Password" required>
+        
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            <input type="password" class="form-control" id="password" placeholder="Enter your password" required autocomplete="current-password">
+            <button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">
+              <i class="far fa-eye"></i>
+            </button>
+          </div>
+          <div class="error-message" id="passwordError">Password must be at least 8 characters</div>
         </div>
-        <button type="submit" class="btn-login pulse">Log in</button>
-        <div id="errorMessage" class="error-message">Invalid email or password. Please try again.</div>
+        
+        <div class="form-group form-check mb-3">
+          <input type="checkbox" class="form-check-input" id="rememberMe">
+          <label class="form-check-label" for="rememberMe">Remember me</label>
+          <a href="#forgot-password" class="link float-end">Forgot password?</a>
+        </div>
+        
+        <button type="submit" class="btn btn-login" id="loginButton">
+          <span id="buttonText">Log in</span>
+          <span id="buttonSpinner" class="spinner" style="display: none;"></span>
+        </button>
+        
+        <div class="mt-3">
+          <p>Don't have an account? <a href="register.html" class="link">Register here</a></p>
+        </div>
       </form>
-      <p class="mt-3">
-        <a href="index.html" class="link-back">Back to Home</a>
-      </p>
     </div>
   </main>
 
@@ -210,29 +551,131 @@
       <p>Professor Dr. Md. Shahidur Rahman, Poultry Science (প্রফেসর ডঃ মোঃ শহিদুর রহমান, পোল্ট্রি বিজ্ঞান বিভাগ)</p>
       <p>Professor Dr. Md. Rakib Hasan, Computer Science and Mathematics (প্রফেসর ডঃ মোহাম্মদ রাকিব হাসান, কম্পিউটার বিজ্ঞান ও ম্যাথমেটিক্স বিভাগ)</p>
       <p>Bangladesh Agricultural University, Mymensingh (বাংলাদেশ কৃষি বিশ্ববিদ্যালয়, ময়মনসিংহ)</p>
-      <p>Contact: 01700636155; Email: msrahman.poultry@bau.edu.bd</p>
+      <p>Contact: 01700636155; Email: <a href="mailto:msrahman.poultry@bau.edu.bd" class="link">msrahman.poultry@bau.edu.bd</a></p>
     </div>
+    
+
+    
     <p class="mt-3">© 2025 BAU Feed Service. All rights reserved.</p>
   </footer>
 
+  <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Modern JavaScript with enhanced features -->
   <script>
-    function handleLogin(event) {
-      event.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const errorMessage = document.getElementById('errorMessage');
-
+    document.addEventListener('DOMContentLoaded', function() {
+      // Password toggle functionality
+      const togglePassword = document.getElementById('togglePassword');
+      const password = document.getElementById('password');
       
-      if (email === "msrahman.poultry@bau.edu.bd" && password === "password123") {
-        errorMessage.style.display = 'none';
-        alert('Login successful! Redirecting...');
-        
-        window.location.href = 'dashboard.html'; 
-      } else {
-        errorMessage.style.display = 'block';
+      if (togglePassword && password) {
+        togglePassword.addEventListener('click', function() {
+          const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+          password.setAttribute('type', type);
+          this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+        });
       }
-    }
+      
+      // Form validation
+      const loginForm = document.getElementById('loginForm');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      const loginButton = document.getElementById('loginButton');
+      const buttonText = document.getElementById('buttonText');
+      const buttonSpinner = document.getElementById('buttonSpinner');
+      
+      if (loginForm) {
+        loginForm.addEventListener('submit', async function(event) {
+          event.preventDefault();
+          
+          // Reset error states
+          emailInput.parentElement.parentElement.classList.remove('has-error');
+          passwordInput.parentElement.parentElement.classList.remove('has-error');
+          emailError.style.display = 'none';
+          passwordError.style.display = 'none';
+          
+          // Validate inputs
+          let isValid = true;
+          
+          if (!emailInput.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+            emailInput.parentElement.parentElement.classList.add('has-error');
+            emailError.style.display = 'block';
+            isValid = false;
+          }
+          
+          if (!passwordInput.value || passwordInput.value.length < 8) {
+            passwordInput.parentElement.parentElement.classList.add('has-error');
+            passwordError.style.display = 'block';
+            isValid = false;
+          }
+          
+          if (!isValid) {
+            return;
+          }
+          
+          // Simulate login process
+          try {
+            // Show loading state
+            loginButton.disabled = true;
+            buttonText.textContent = 'Logging in...';
+            buttonSpinner.style.display = 'inline-block';
+            
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Check credentials (in a real app, this would be an API call)
+            if (emailInput.value === "msrahman.poultry@bau.edu.bd" && passwordInput.value === "password123") {
+              // Successful login - redirect to dashboard
+              window.location.href = 'dashboard.html';
+            } else {
+              // Show error message
+              const errorDiv = document.createElement('div');
+              errorDiv.className = 'alert alert-danger mt-3';
+              errorDiv.textContent = 'Invalid email or password. Please try again.';
+              errorDiv.setAttribute('role', 'alert');
+              
+              const existingAlert = loginForm.querySelector('.alert');
+              if (existingAlert) {
+                existingAlert.replaceWith(errorDiv);
+              } else {
+                loginForm.appendChild(errorDiv);
+              }
+              
+              // Add shake animation to form
+              loginForm.classList.add('shake');
+              setTimeout(() => {
+                loginForm.classList.remove('shake');
+              }, 500);
+            }
+          } catch (error) {
+            console.error('Login error:', error);
+            alert('An error occurred during login. Please try again.');
+          } finally {
+            // Reset button state
+            loginButton.disabled = false;
+            buttonText.textContent = 'Log in';
+            buttonSpinner.style.display = 'none';
+          }
+        });
+      }
+      
+      // Add shake animation CSS
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        .shake {
+          animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+      `;
+      document.head.appendChild(style);
+    });
   </script>
 </body>
 </html>

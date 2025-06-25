@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About BAU Feed Service (BAU-FS)</title>
+  <title>About- BAU Feed Service (BAU-FS)</title>
   
   <!-- Google Fonts & Bootstrap -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -45,7 +45,7 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap; 
-      gap: 15px; /* Space between logo and text */
+      gap: 20px; /* Space between logo and text */
     }
 
     .feed-logo {
@@ -65,10 +65,11 @@
       margin: 0; 
     }
 
-    .header-subtitle {
-      font-size: 1rem;
-      color: #d9ecff;
-      width: 100%; 
+    .subtitle {
+      font-size:clamp(1rem, 3vw, 1.3rem);
+      font-weight: 500;
+      color: #e3f2fd;
+      margin: 0.5rem 0;
     }
 
     .section {
@@ -162,8 +163,8 @@
       .header-subtitle {
         font-size: 0.9rem;
       }
-      .bau-logo {
-        height: 30px;
+      .feed-logo {
+        max-height: 100px;
       }
       .section {
         margin: 15px;
@@ -194,9 +195,7 @@
       .header-subtitle {
         font-size: 0.8rem;
       }
-      .bau-logo {
-        height: 30px;
-      }
+      
     }
   </style>
 </head>
