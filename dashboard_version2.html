@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - BAU Feed Service (BAU-FS) | Livestock Feed Management</title>
+  <meta name="description" content="Dashboard for BAU Feed Service - Comprehensive livestock feed management system for poultry, livestock and fish feed solutions">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  <link rel="preload" href="https://www.bau.edu.bd/public/frontend/images/logo_new.png" as="image">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-color: #0077b6;
+      --primary-dark: #005f92;
+      --secondary-color: #00b4d8;
+      --accent-color: #90e0ef;
+      --light-color: #caf0f8;
+      --bg-color: #ffffff;
+      --text-color: #222;
+      --text-light: #f8f9fa;
+      --card-bg: #f8fbfe;
+      --transition-base: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+      --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+      --border-radius-sm: 8px;
+      --border-radius-md: 12px;
+      --border-radius-lg: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      padding: 0.75rem 1rem;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      color: white !important;
+    }
+
+    .navbar-brand img {
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    .navbar-toggler {
+      border: none;
+      padding: 0.5rem;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    .nav-link {
+      color: white !important;
+      font-weight: 500;
+      padding: 0.5rem 1rem !important;
+      margin: 0 0.25rem;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition-base);
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link:focus {
+      color: var(--accent-color) !important;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link.active {
+      color: var(--accent-color) !important;
+      font-weight: 600;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+      right: 1rem;
+      height: 2px;
+      background: var(--accent-color);
+    }
+
+    /* Header Section */
+    .dashboard-header {
+      background: linear-gradient(135deg, rgba(202, 240, 248, 0.9) 0%, rgba(255, 255, 255, 1) 100%);
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      border-bottom-left-radius: var(--border-radius-lg);
+      border-bottom-right-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .feed-logo {
+      height: 80px;
+      width: auto;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      transition: transform 0.3s ease;
+    }
+
+    .feed-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .header-title {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin: 0;
+      color: var(--primary-color);
+      line-height: 1.2;
+    }
+
+    .header-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--primary-dark);
+      margin-top: 0.5rem;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      box-shadow: var(--shadow-sm);
+      margin-top: 1rem;
+    }
+
+    .user-info img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .user-name {
+      font-weight: 500;
+      color: var(--primary-dark);
+    }
+
+    /* Dashboard Main Content */
+    main {
+      flex: 1;
+      padding: 0 1rem 2rem;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+    }
+
+    .dashboard-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition-base);
+      width: 100%;
+      max-width: 350px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--border-radius-md);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-base);
+    }
+
+    .dashboard-card:hover .card-image {
+      transform: scale(1.03);
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+    }
+
+    .card-description {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    /* Buttons */
+    .btn-custom {
+      background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      transition: var(--transition-base);
+      border: none;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      width: fit-content;
+    }
+
+    .btn-custom:hover {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      color: white;
+    }
+
+    .btn-custom i {
+      margin-right: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+      color: var(--text-light);
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      color: var(--light-color);
+      text-decoration: none;
+      transition: var(--transition-base);
+    }
+
+    .footer-link:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .dashboard-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        padding: 1.5rem 1rem;
+      }
+      
+      .feed-logo {
+        height: 70px;
+      }
+      
+      .dashboard-card {
+        padding: 1.5rem;
+      }
+      
+      .card-image {
+        height: 160px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .header-content {
+        padding: 1rem;
+      }
+      
+      .feed-logo {
+        height: 60px;
+      }
+      
+      .header-title {
+        font-size: 1.5rem;
+      }
+      
+      .dashboard-card {
+        max-width: 100%;
+        padding: 1.25rem;
+      }
+      
+      .card-image {
+        height: 140px;
+      }
+      
+      .nav-link {
+        padding: 0.5rem !important;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="home.html">
+        <img src="https://i.postimg.cc/NM0Czg9X/BAU-FEED-LOGO-2109027.png" alt="BAU-FS Logo">
+        BAU-FS
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="homepage.html"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="poultry-feed.html"><i class="fas fa-kiwi-bird"></i> Poultry Feed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="livestock-feed.html"><i class="fas fa-cow"></i> Livestock Feed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="fish-feed.html"><i class="fas fa-fish"></i> Fish Feed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Header -->
+  <header class="dashboard-header" data-aos="fade-down">
+    <div class="header-content">
+          <h1 class="header-title">BAU Feed Service (BAU-FS)</h1>
+          <p class="header-subtitle">বাউ ফিড সার্ভিস (বাউ-এফএস)</p>
+        </div>
+      </div>
+     
+    </div>
+  </header>
+
+  <!-- Dashboard Main Content -->
+  <main>
+    <div class="dashboard-container">
+      <!-- Poultry Feed Card -->
+      <div class="dashboard-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://i.postimg.cc/SRjvvQD0/Poultry-feed.jpg" alt="Poultry Feed" class="card-image">
+        <h3 class="card-title">Poultry Feed</h3>
+        <p class="card-description">Optimized feed formulations for poultry health and productivity (হাঁস-মুরগির জন্য সর্বোত্তম ফিড ফর্মুলেশন)</p>
+        <a href="poultry-feed.html" class="btn-custom">
+          <i class="fas fa-arrow-right"></i> Proceed (এগিয়ে যান)
+        </a>
+      </div>
+
+      <!-- Livestock Feed Card -->
+      <div class="dashboard-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://i.postimg.cc/3xjCS60B/livestock-feed-2.jpg" alt="Livestock Feed" class="card-image">
+        <h3 class="card-title">Livestock Feed</h3>
+        <p class="card-description">Nutritional solutions for cattle and livestock (গবাদি পশুর জন্য পুষ্টিকর খাদ্য সমাধান)</p>
+        <a href="livestock-feed.html" class="btn-custom">
+          <i class="fas fa-arrow-right"></i> Proceed (এগিয়ে যান)
+        </a>
+      </div>
+
+      <!-- Fish Feed Card -->
+      <div class="dashboard-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://i.postimg.cc/43BHxXbF/fish-feed.jpg" alt="Fish Feed" class="card-image">
+        <h3 class="card-title">Fish Feed</h3>
+        <p class="card-description">Specialized feed for aquaculture and fish farming (মাছ চাষের জন্য বিশেষায়িত খাদ্য)</p>
+        <a href="fish-feed.html" class="btn-custom">
+          <i class="fas fa-arrow-right"></i> Proceed (এগিয়ে যান)
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+        <a href="privacy.html" class="footer-link">Privacy Policy</a>
+        <a href="terms.html" class="footer-link">Terms of Service</a>
+      </div>
+      <p class="copyright">© 2025 BAU Feed Service. All rights reserved.<br>Bangladesh Agricultural University, Mymensingh</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- AOS Animation -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS animation
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+    
+    // Add active class to current page in navbar
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPage = window.location.pathname.split('/').pop();
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
